@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # ------------------------
+    # Checkout code
+    # ------------------------
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # ------------------------
+    # Setup Node.js
+    # ------------------------
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    # ------------------------
+    # Install dependencies
+    # ------------------------
+    - name: Install dependencies
+      run: npm install
+
+    # ------------------------
+    # Lint JS code
+    # ------------------------
+    - name: Run ESLint
+      run: npm run lint
+
+    # ------------------------
+    # Lint Dockerfile (Hadolint)
+    # ------------------------
+    - name: Lint Dockerfile
+      uses: hadolint/hadolint-action@v3
+      with:
+        dockerfile: ./Dockerfile
+
+    # ------------------------
+    # Run unit tests
+    # ------------------------
+    - name: Run tests
+      run: npm test
+
+    # ------------------------
+    # Build Docker image
+    # ------------------------
+    - name: Build Docker image
+      run: docker build -t my-app:${{ github.sha }} .
