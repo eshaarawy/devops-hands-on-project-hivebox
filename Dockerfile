@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ RUN npm i
 # Copy the remaining project files
 COPY . .
 
-CMD ["node", "version.js"]
+CMD ["node", "server.js"]
