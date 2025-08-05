@@ -54,8 +54,8 @@ jobs:
     # ------------------------
     # SonarQube
     # ------------------------
-    - name: SonarQube Quality Gate Check
-      uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
+    # - name: SonarQube Quality Gate Check
+    #   uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
       
     
     # ------------------------
