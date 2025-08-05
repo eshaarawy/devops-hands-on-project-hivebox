@@ -50,3 +50,16 @@ jobs:
     # ------------------------
     - name: Build Docker image
       run: docker build -t my-app:${{ github.sha }} .
+
+    # ------------------------
+    # SonarQube
+    # ------------------------
+    - name: SonarQube Quality Gate Check
+      uses: SonarSource/sonarqube-quality-gate-action@v1.2.0
+      
+    
+    # ------------------------
+    # Terrascan
+    # ------------------------
+    - name: Terrascan IaC scanner
+      uses: tenable/terrascan-action@v1.4.1
