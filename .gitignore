@@ -32,3 +32,7 @@ coverage/
 
 # Ignore system files
 Thumbs.db
+
+# Ignore terraform extra files
+eks-terraform/.terraform
+.terraform*
