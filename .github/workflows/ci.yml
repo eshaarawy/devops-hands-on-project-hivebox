@@ -90,10 +90,10 @@ jobs:
         run: echo "SENSEBOX_API_BASE_URL=${{ secrets.SENSEBOX_API_BASE_URL }}" >> $GITHUB_ENV
         
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 20
 
@@ -101,7 +101,4 @@ jobs:
         run: npm ci
 
       - name: Run Unit Tests
-        run: npm run test:unit
-
-      - name: Run integration Tests
-        run: npm run test:integration
+        run: npm run test
